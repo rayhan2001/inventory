@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -48,7 +49,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.users.show',[
+            'user'=>User::find($id),
+        ]);
     }
 
     /**
@@ -73,7 +76,37 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = $request->validate([
+            'name' => 'required',
+            'subtitle' => 'required',
+            'phone' => 'required|max:11',
+            'password' => 'required|max:8',
+            'image' => 'required',
+
+        ]);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->subtitle = $request->subtitle;
+        $user->phone = $request->phone;
+        $user->password = bcrypt($request->password);
+        if ($request->file('image')){
+            if ($user->image !=null){
+                unlink($user->image);
+            }
+            $user->image = $this->saveImage($request);
+        }
+        $user->address = $request->address;
+        $user->save();
+        Toastr::success('User Create Successfully !', '', ["positionClass" => "toast-top-right"]);
+        return redirect(route('user.index'));
+    }
+    public function saveImage($request){
+        $image = $request->file('image');
+        $imageName = rand().'.'.$image->getClientOriginalExtension();
+        $directory = 'upload/user/';
+        $imageUrl = $directory.$imageName;
+        $image->move($directory,$imageName);
+        return $imageUrl;
     }
 
     /**
@@ -84,6 +117,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if ($user->image){
+            unlink($user->image);
+        }
+        $user->delete();
+        Toastr::success('User Delete Successfully !', '', ["positionClass" => "toast-top-right"]);
+        return back();
     }
 }

@@ -19,7 +19,6 @@
                                         <tr>
                                             <th>Sl</th>
                                             <th>Name</th>
-                                            <th>Subtitle</th>
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Action</th>
@@ -30,7 +29,6 @@
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
                                                 <td>{{$user->name}}</td>
-                                                <td>ada</td>
                                                 <td>{{$user->email}}</td>
                                                 <td>{{$user->phone}}</td>
                                                 <td>

@@ -17,7 +17,7 @@ use App\Http\Controllers\SupplierController;
 |
 */
 
-
+Route::resource('user',UserController::class);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -26,8 +26,6 @@ Route::middleware([
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
 //===========Route List=============
-    Route::resource('user',UserController::class);
-
     Route::resource('employee',EmployeeController::class);
     Route::get('/employee-status{id}',[EmployeeController::class,'status'])->name('employee.status');
 

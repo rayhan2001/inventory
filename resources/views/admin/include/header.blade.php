@@ -1,3 +1,6 @@
+@php
+    $user=\Illuminate\Support\Facades\Auth::user();
+@endphp
 <div class="topbar">
     <!-- LOGO -->
     <div class="topbar-left">
@@ -87,11 +90,9 @@
                         <a href="#" class="right-bar-toggle waves-effect waves-light"><i class="md md-chat"></i></a>
                     </li>
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{asset('adminAsset')}}/images/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
+                        <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{asset($user->image)}}" alt="user-img" class="img-circle"> </a>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile</a></li>
-                            <li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
-                            <li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
+                            <li><a href="{{route('user.show',$user->id)}}"><i class="md md-face-unlock"></i> Profile</a></li>
                             <li>
                                 <a href="" onclick="event.preventDefault(); document.getElementById('logoutForm').submit()"><i class="md md-settings-power"></i> Logout</a>
                                 <form action="{{'logout'}}" method="post" id="logoutForm">

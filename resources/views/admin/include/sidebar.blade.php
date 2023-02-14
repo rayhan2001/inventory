@@ -5,15 +5,13 @@
     <div class="sidebar-inner slimscrollleft">
         <div class="user-details">
             <div class="pull-left">
-                <img src="{{asset('adminAsset')}}/images/users/avatar-1.jpg" alt="" class="thumb-md img-circle">
+                <img src="{{asset($user->image)}}" alt="" class="thumb-md img-circle">
             </div>
             <div class="user-info">
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{$user->name}}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
-                        <li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
-                        <li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
+                        <li><a href="{{route('user.show',$user->id)}}"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
                         <li>
                             <a href="" onclick="event.preventDefault(); document.getElementById('logoutForm').submit()"><i class="md md-settings-power"></i> Logout</a>
                             <form action="{{'logout'}}" method="post" id="logoutForm">
@@ -23,7 +21,9 @@
                     </ul>
                 </div>
 
-                <p class="text-muted m-0">Administrator</p>
+                <p class="text-muted m-0">
+                    <span>{{$user->subtitle}}</span>
+                </p>
             </div>
         </div>
         <!--- Divider -->
@@ -53,7 +53,7 @@
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a href="#" class="waves-effect"><i class="md-directions-walk"></i><span> Supplier </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                    <a href="#" class="waves-effect"><i class="md-shopping-basket"></i><span> Supplier </span><span class="pull-right"><i class="md md-add"></i></span></a>
                     <ul class="list-unstyled">
                         <li><a href="{{route('supplier.create')}}">Add Supplier</a></li>
                         <li><a href="{{route('supplier.index')}}">All Supplier</a></li>
