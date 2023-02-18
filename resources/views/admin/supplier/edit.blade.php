@@ -1,6 +1,6 @@
 @extends('master.admin_app')
 @section('title')
-    Edit Supplier
+    Update Supplier
 @endsection
 @section('content')
     <div class="content">
@@ -8,7 +8,7 @@
             <!-- Form -->
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">Edit a Supplier</h3></div>
+                    <div class="panel-heading"><h3 class="panel-title">Update a Supplier</h3></div>
                     <div class="panel-body">
                         <form role="form" action="{{route('supplier.update',$supplier->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -92,6 +92,28 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label for="image">Image</label><span class="text-danger">*</span>
+                                        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image">
+                                        <img src="{{asset($supplier->image)}}" alt="" width="50" height="40" class="img-thumbnail" style="margin-top: 5px;">
+                                        @error('image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="type">Supplier Type</label>
+                                        <select name="type" id="type" class="form-control">
+                                            <option value="1" {{$supplier->type=='Distributor'? 'selected':''}}>Distributor</option>
+                                            <option value="2" {{$supplier->type=='Whole Seller'? 'selected':''}}>Whole Seller</option>
+                                            <option value="3" {{$supplier->type=='Brochure'? 'selected':''}}>Brochure</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="status">Status</label>
                                         <select name="status" id="status" class="form-control">
                                             <option value="1" {{$supplier->status==1? 'selected':''}}>Active</option>
@@ -100,33 +122,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="image">Image</label><span class="text-danger">*</span>
-                                        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image">
-                                        <img src="{{asset($supplier->image)}}" alt="" width="40" height="50" class="img-thumbnail" style="margin-top: 5px;">
-                                        @error('image')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="type">Supplier Type</label>
-                                        <select name="type" id="type" class="form-control">
-                                            <option value="1" {{$supplier->status==1? 'selected':''}}>Distributor</option>
-                                            <option value="2" {{$supplier->status==2? 'selected':''}}>Whole Seller</option>
-                                            <option value="3" {{$supplier->status==3? 'selected':''}}>Brochure</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <textarea name="address" id="address" class="form-control" rows="2">{{$supplier->address}}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-purple waves-effect waves-light">Update</button>
+                            <button type="submit" class="btn btn-purple waves-effect waves-light">Submit</button>
                         </form>
                     </div><!-- panel-body -->
                 </div> <!-- panel -->

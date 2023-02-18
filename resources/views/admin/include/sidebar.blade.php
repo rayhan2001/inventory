@@ -59,6 +59,27 @@
                         <li><a href="{{route('supplier.index')}}">All Supplier</a></li>
                     </ul>
                 </li>
+                <li class="has_sub">
+                    <a href="#" class="waves-effect"><i class="md-payment"></i><span>Advance Salary </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{route('salary.create')}}">Add Salary</a></li>
+                        <li><a href="{{route('salary.index')}}">All Salary</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="#" class="waves-effect"><i class="md-color-lens"></i><span>Category </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{route('category.create')}}">Add Category</a></li>
+                        <li><a href="{{route('category.index')}}">All Category</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="#" class="waves-effect"><i class="md-store"></i><span>Products </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{route('product.create')}}">Add Product</a></li>
+                        <li><a href="{{route('product.index')}}">All Product</a></li>
+                    </ul>
+                </li>
             </ul>
             <div class="clearfix"></div>
         </div>

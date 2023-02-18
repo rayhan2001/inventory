@@ -158,7 +158,7 @@ class SupplierController extends Controller
             unlink($supplier->image);
         }
         $supplier->delete();
-        Toastr::success('Supplier Delete Successfully !', '', ["positionClass" => "toast-top-right"]);
+        Toastr::warning('Supplier Delete Successfully !', '', ["positionClass" => "toast-top-right"]);
         return back();
     }
     public function status($id){
@@ -169,7 +169,7 @@ class SupplierController extends Controller
             $supplier->status=1;
         }
         $supplier->save();
-        Toastr::success('Status Change Successfully !', '', ["positionClass" => "toast-top-right"]);
+        Toastr::info('Status Change Successfully !', '', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

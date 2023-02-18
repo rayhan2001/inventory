@@ -6,6 +6,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\CategoryContoller;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +19,9 @@ use App\Http\Controllers\SupplierController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::prefix('api/v1')->group(function (){
+    Route::get('/products',[\App\Http\Controllers\ProductController::class,'getProductList']);
+});
 Route::resource('user',UserController::class);
 Route::middleware([
     'auth:sanctum',
@@ -34,4 +39,12 @@ Route::middleware([
 
     Route::resource('supplier',SupplierController::class);
     Route::get('/supplier-status{id}',[SupplierController::class,'status'])->name('supplier.status');
+
+    Route::resource('salary',SalaryController::class);
+
+    Route::resource('category',CategoryContoller::class);
+    Route::get('/category-status{id}',[CategoryContoller::class,'status'])->name('category.status');
+
+    Route::resource('product',ProductController::class);
+    Route::get('/product-status{id}',[ProductController::class,'status'])->name('product.status');
 });

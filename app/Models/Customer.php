@@ -11,4 +11,5 @@ class Customer extends Model
     protected $fillable=[
         'image','name','email','phone','address','shop_name','account_holder','account_number','bank_name','city'
     ];
+
 }

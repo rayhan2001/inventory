@@ -6,9 +6,9 @@
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
     <meta name="author" content="Coderthemes">
 
-    <link rel="shortcut icon" href="{{asset('adminAsset')}}/images/favicon_1.ico">
+    <link rel="shortcut icon" href="images/favicon_1.ico">
 
-    <title>Login Page</title>
+    <title>Reset Password</title>
 
     <!-- Base Css Files -->
     <link href="{{asset('adminAsset')}}/css/bootstrap.min.css" rel="stylesheet" />
@@ -38,55 +38,35 @@
     <script src="{{asset('adminAsset')}}/js/modernizr.min.js"></script>
 
 </head>
-<body class="bg-info">
+<body>
 
 
 <div class="wrapper-page">
     <div class="panel panel-color panel-primary panel-pages">
+
         <div class="panel-heading bg-img">
             <div class="bg-overlay"></div>
-            <h3 class="text-center m-t-10 text-white"> Sign In to <strong>Inventory</strong> </h3>
+            <h3 class="text-center m-t-10 text-white"> Reset Password </h3>
         </div>
-
 
         <div class="panel-body">
-            <form class="form-horizontal m-t-20" method="POST" action="{{ route('login') }}">
+            <form role="form" class="text-center" method="POST" action="{{ route('password.email') }}">
                 @csrf
-                <div class="form-group ">
-                    <div class="col-xs-12">
-                        <input class="form-control input-lg " type="text" name="email" required="" placeholder="Email">
+                <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    Enter your <b>Email</b> and instructions will be sent to you!
+                </div>
+                <div class="form-group m-b-0">
+                    <div class="input-group">
+                        <input type="email" name="email" class="form-control input-lg" placeholder="Enter Email" required="">
+                        <span class="input-group-btn"> <button type="submit" class="btn btn-lg btn-primary waves-effect waves-light">Reset</button> </span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <input class="form-control input-lg" type="password" name="password" required="" placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <div class="col-xs-12">
-                        <div class="checkbox checkbox-primary">
-                            <input id="checkbox-signup" type="checkbox">
-                            <label for="checkbox-signup">
-                                Remember me
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group text-center m-t-40">
-                    <div class="col-xs-12">
-                        <button class="btn btn-primary btn-lg w-lg waves-effect waves-light" type="submit">Log In</button>
-                    </div>
-                </div>
-                <div class="form-group m-t-30">
-                    <div class="col-sm-7">
-                        <a href="{{ route('password.request') }}"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
-                    </div>
-                    <div class="col-sm-5 text-right">
-                        <a href="{{route('register')}}">Create an account</a>
-                    </div>
-                </div>
+
             </form>
+
         </div>
+
     </div>
 </div>
 

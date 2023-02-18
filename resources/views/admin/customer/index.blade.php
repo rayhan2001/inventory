@@ -18,12 +18,12 @@
                                         <thead>
                                         <tr>
                                             <th>Sl</th>
+                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Shop Name</th>
                                             <th>Bank Name</th>
-                                            <th>Image</th>
                                             <th>Address</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -33,14 +33,18 @@
                                         @foreach($customers as $customer)
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
+                                                <td>
+                                                    @if(!empty($customer->image))
+                                                        <img src="{{asset($customer->image)}}" alt="" height="50" width="40" class="img-circle">
+                                                    @else
+                                                        <img src="{{asset('adminAsset')}}/images/no-img.png" alt="" height="50" width="40">
+                                                    @endif
+                                                </td>
                                                 <td>{{$customer->name}}</td>
                                                 <td>{{$customer->email}}</td>
                                                 <td>{{$customer->phone}}</td>
                                                 <td>{{$customer->shop_name}}</td>
                                                 <td>{{$customer->bank_name}}</td>
-                                                <td>
-                                                    <img src="{{asset($customer->image)}}" alt="" width="40" height="50">
-                                                </td>
                                                 <td>{{substr($customer->address,0,20)}}</td>
                                                 <td>
                                                     <span class="{{$customer->status==1? 'text-primary':'text-danger'}}">{{$customer->status==1? 'Active':'Inactive'}}</span>
@@ -91,7 +95,11 @@
                     <div class="row">
                         <div class="form-group">
                             <label for="field-5" class="control-label">Image</label><br>
-                            <img src="{{asset($customer->image)}}" alt="" width="100" height="100" class="img-thumbnail">
+                            @if(!empty($customer->image))
+                                <img src="{{asset($customer->image)}}" alt="" width="100" height="100" class="img-thumbnail">
+                            @else
+                                <img src="{{asset('adminAsset')}}/images/no-img.png" alt="" height="100" width="100" class="img-thumbnail">
+                            @endif
                         </div>
                     </div>
                     <div class="row">

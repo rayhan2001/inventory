@@ -18,12 +18,12 @@
                                         <thead>
                                         <tr>
                                             <th>Sl</th>
+                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Shop Name</th>
                                             <th>Bank Name</th>
-                                            <th>Image</th>
                                             <th>Address</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -33,14 +33,18 @@
                                         @foreach($suppliers as $supplier)
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
+                                                <td>
+                                                    @if(!empty($supplier->image))
+                                                        <img src="{{asset($supplier->image)}}" alt="" height="50" width="40" class="img-circle">
+                                                    @else
+                                                        <img src="{{asset('adminAsset')}}/images/no-img.png" alt="" height="50" width="40">
+                                                    @endif
+                                                </td>
                                                 <td>{{$supplier->name}}</td>
                                                 <td>{{$supplier->email}}</td>
                                                 <td>{{$supplier->phone}}</td>
                                                 <td>{{$supplier->shop_name}}</td>
                                                 <td>{{$supplier->bank_name}}</td>
-                                                <td>
-                                                    <img src="{{asset($supplier->image)}}" alt="" width="40" height="50">
-                                                </td>
                                                 <td>{{substr($supplier->address,0,20)}}</td>
                                                 <td>
                                                     <span class="{{$supplier->status==1? 'text-primary':'text-danger'}}">{{$supplier->status==1? 'Active':'Inactive'}}</span>

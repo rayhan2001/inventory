@@ -18,10 +18,10 @@
                                         <thead>
                                         <tr>
                                             <th>Sl</th>
+                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
-                                            <th>Image</th>
                                             <th>Address</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -31,12 +31,16 @@
                                         @foreach($employees as $employee)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
+                                            <td>
+                                                @if(!empty($employee->image))
+                                                    <img src="{{asset($employee->image)}}" alt="" height="50" width="40" class="img-circle">
+                                                @else
+                                                    <img src="{{asset('adminAsset')}}/images/no-img.png" alt="" height="50" width="40">
+                                                @endif
+                                            </td>
                                             <td>{{$employee->name}}</td>
                                             <td>{{$employee->email}}</td>
                                             <td>{{$employee->phone}}</td>
-                                            <td>
-                                                <img src="{{asset($employee->image)}}" alt="" width="40" height="50">
-                                            </td>
                                             <td>{{substr($employee->address,0,20)}}</td>
                                             <td>
                                                 <span class="{{$employee->status==1? 'text-primary':'text-danger'}}">{{$employee->status==1? 'Active':'Inactive'}}</span>
@@ -87,7 +91,11 @@
                     <div class="row">
                         <div class="form-group">
                             <label for="field-5" class="control-label">Image</label><br>
-                            <img src="{{asset($employee->image)}}" alt="" width="100" height="100" class="img-thumbnail">
+                                @if(!empty($employee->image))
+                                    <img src="{{asset($employee->image)}}" alt="" width="100" height="100" class="img-thumbnail">
+                                @else
+                                    <img src="{{asset('adminAsset')}}/images/no-img.png" alt="" height="100" width="100" class="img-thumbnail">
+                                @endif
                         </div>
                     </div>
                     <div class="row">
